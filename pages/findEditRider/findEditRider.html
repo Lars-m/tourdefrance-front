@@ -1,0 +1,56 @@
+<div class="template">
+  <h2>Find/Edit/Delete riders</h2>
+
+  <div class="row">
+    <div class="col-md-2">
+      <input id="rider-id-input" class="form-control" placeholder="Enter Rider ID" />
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-outline-primary" id="btn-fetch-rider">Get Rider</button>
+    </div>
+    <div id="spinner1" class="spinner-border" style="display:none" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <p id="status-1"></p>
+
+  <form class="row">
+    <div class="row" style="margin-top: 0.5em;">
+      <p id="id" style="font-size: larger;"></p>
+    </div>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <label class="form-label" for="name">Name</label>
+        <input id="name" class="form-control" />
+      </div>
+    </div>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <label class="form-label" for="name">Country</label>
+        <input id="country" class="form-control" />
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-2">
+        <input class="form-check-input" type="checkbox" value="" id="below26">
+        <label class="form-check-label" for="below26">
+          Is Below 26
+        </label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" aria-label="Select Teams" id="team-selector"></select>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <button class="btn btn-outline-dark" style="width: 45%;" id="save-rider">Save</button>
+        <button class="btn btn-outline-dark" style="width: 45%;" id="delete-rider">Delete</button>
+      </div>
+    </div>
+  </form>
+  <div id="spinner2" class="spinner-border" style="display:none" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <br />
+  <p id="status-2"></p>
+</div>
