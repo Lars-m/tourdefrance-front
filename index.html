@@ -11,6 +11,7 @@
   <link href="styles.css" rel="stylesheet" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
   <script src="index.js" type="module"></script>
 </head>
@@ -23,14 +24,18 @@
     } */
   </style>
   <div>
-    <div class="p-2 text-danger text-center " style="background:yellow;display: flex;
-    align-items: center; justify-content: center;">
-      <img src="./images/flag2.png" style="max-width:4em" alt="dk-flag" />
-      <h2 style="margin-left: 1em;margin-right:1em;">Tour de France - First three stages - Denmark 2022</h2>&nbsp;
-      <img src="./images/flag2.png" style="max-width:4em" alt="dk-flag" />
+    <div class="p-2 text-dark text-center row" style="background:#ffbf00;display: flex;
+    align-items: center; justify-content: left;">
+      <div class="col-md-1"></div>
+      <div class="col-md-1"> <img src="./images/flag-with-tour.png" style="max-height:6em" alt="dk-flag" /></div>
+      <div class="col-md-6">
+        <h2 style="margin-left: 1em;margin-right:1em;">Tour de France - First three stages - Denmark 2022</h2>&nbsp;
+      </div>
+      <div class="col-md-1"><img src="./images/flag-with-tour2.png" style="max-height:6em" alt="dk-flag" /></div>
+      <div class="col-md-1"></div>
     </div>
     <header>
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <nav class="navbar navbar-expand-md navbar-dark bg-black">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav"
@@ -52,6 +57,9 @@
               <li class="nav-item logged-in-menu">
                 <a class="nav-link" href="/find-edit-rider" data-navigo>Find/Edit Riders</a>
               </li>
+              <li class="nav-item logged-in-menu">
+                <a class="nav-link" href="/stage-results" data-navigo>Add/Edit stage results</a>
+              </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="/results" data-navigo>Results</a>
@@ -60,23 +68,23 @@
                 <a class="nav-link" href="/login" data-navigo>Login</a>
               </li>
               <li id="logout-container" class="nav-item" style="display:none; display:flex;text-align: left;">
-                <a class="nav-link" href="/logout" data-navigo>Logout <span id="logged-in-user"></span></a>
+                <a class="nav-link" href="/logout" data-navigo>Logout </a>
               </li>
             </ul>
+            <p class="logged-in-menu" style="color:white;margin-right: 2em;font-size: larger;"><span
+                id="logged-in-user"></span></p>
           </div>
         </div>
       </nav>
+
     </header>
     <br />
-    <div id="content" class="container-fluid" style="margin:1em;"></div>
+    <div id="content" class="container"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
-
 </body>
-
-
 
 </html>

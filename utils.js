@@ -81,7 +81,13 @@ export function makeOptions(method, body, addToken) {
 
 export async function handleHttpErrors(res) {
   if (!res.ok) {
-    const errorResponse = await res.json();
+    try {
+      const errorResponse = await res.json();
+    } catch (e) { //No JSON response included with the error
+      const err = new Error(res.statusText)
+      err.statusCode = res.status
+      throw err
+    }
     const error = new Error(errorResponse.message)
     error.apiError = errorResponse
     throw error

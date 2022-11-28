@@ -3,8 +3,9 @@ export function handleError(err, statusField) {
     console.error("Full API error: ", err.apiError)
     setStatusMsg(err.apiError.message, statusField, true)
   } else {
-    setStatusMsg(err.message + " (Is the server running?)", statusField, true)
-    console.error(err.message)
+    const msg = (err.statusCode && err.statusCode == 401) ? " Request could not be authenticated, you might need to login again" : " (Is the server running?)"
+    setStatusMsg(err.message + msg, statusField, true)
+    console.error(err.message + msg)
   }
 }
 
@@ -18,4 +19,13 @@ export function setStatusMsg(msg, statusField, isError) {
 export function showSpinner(target, show) {
   const value = show ? "block" : "none"
   document.getElementById(target).style.display = value
+}
+
+export function secondsToHourMinSecStr(sec) {
+  let hours = Math.floor(sec / 3600)
+  let remainingSeconds = sec % 3600
+  let min = Math.floor(remainingSeconds / 60)
+  let seconds = remainingSeconds % 60
+  const asStr = `${hours.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+  return asStr
 }

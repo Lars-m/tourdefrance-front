@@ -62,6 +62,6 @@ export function toogleLoginStatus(loggedIn) {
 
 
   if (loggedIn) {
-    document.getElementById("logged-in-user").innerText = `(Logged in as: ${localStorage.getItem("user")})`
+    document.getElementById("logged-in-user").innerText = `Logged in as: ${localStorage.getItem("user")}  `
   }
 }

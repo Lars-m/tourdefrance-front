@@ -1,5 +1,6 @@
 import { SERVER_API } from "../../settings.js"
 import { handleHttpErrors, sanitizeStringWithTableRows } from "../../utils.js"
+import { secondsToHourMinSecStr } from "../pageUtils.js"
 
 const URL = SERVER_API + "riders/scores"
 let showRidersBelow26 = false
@@ -8,14 +9,16 @@ let showRidersBelow26 = false
 export async function initResults() {
 
   document.getElementById("below26-select").onclick = (evt) => {
-    //showRidersBelow26 = evt.target.checked
-    console.log("jfajfajfj")
     initResults()
   }
 
   showRidersBelow26 = document.getElementById("below26-select").checked
 
-  const allRiders = await fetch(URL).then(handleHttpErrors)
+  let allRiders = await fetch(URL).then(handleHttpErrors)
+  allRiders = allRiders.map(rider => {
+    rider.timeAdjusted = secondsToHourMinSecStr(rider.timeTotal)
+    return rider
+  })
   const below26Riders = allRiders.filter(rider => rider.below26)
   const yellow = allRiders.sort((a, b) => a.timeTotal - b.timeTotal)[0].name
   const green = allRiders.sort((a, b) => a.sprintPointTotal - b.sprintPointTotal)[0].name
@@ -23,6 +26,9 @@ export async function initResults() {
   const white = below26Riders.sort((a, b) => a.timeTotal - b.timeTotal)[0].name
 
   const ridersToShow = showRidersBelow26 ? below26Riders : allRiders
+
+
+
   makeTableRows(ridersToShow)
   document.getElementById("yellow").innerText = yellow
   document.getElementById("green").innerText = green
@@ -33,7 +39,7 @@ export async function initResults() {
 function makeTableRows(riders) {
   const rows = riders.map(r => `
   <tr>
-  <td>${(r.timeTotal / 60).toFixed(2)} min.</td>
+   <td>${r.timeAdjusted} (${r.timeTotal} sec)</td>
   <td>${r.name}</td>
   <td>${r.country}</td>
   </tr>`).join("")

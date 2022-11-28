@@ -10,6 +10,8 @@ let TOTAL = 1
 let riders = []
 let initialized = false
 
+
+
 async function gotoToAddEditView(evt) {
   const target = evt.target
   if (!target.id.includes("-column-id")) {
@@ -22,6 +24,8 @@ async function gotoToAddEditView(evt) {
 //sort=brand,asc
 let sortField;
 let sortOrder = "desc"
+
+
 
 function handleSort(pageNo, field, match) {
   sortOrder = sortOrder == "asc" ? "desc" : "asc"
@@ -53,7 +57,7 @@ export async function load(pg, match) {
       queryString += `&sort=${sortField},${sortOrder}`
     }
 
-    riders = await fetch(`${SERVER_API}riders${queryString}`,makeOptions("GET",null,true)).then(handleHttpErrors)
+    riders = await fetch(`${SERVER_API}riders${queryString}`, makeOptions("GET", null, true)).then(handleHttpErrors)
     const rows = riders.map(rider => `
   <tr>
     <td>${rider.id}</td>
@@ -63,6 +67,7 @@ export async function load(pg, match) {
     <td>${rider.below26 ? "yes" : "no"}</td>
     <td>${rider.teamName}</td>
     <td><button id="${rider.id}-column-id" class="btn btn-sm btn-secondary">Edit/delete</button> </td>
+  </tr>  
   `).join("")
     document.getElementById("tbody").innerHTML = sanitizeStringWithTableRows(rows)
 

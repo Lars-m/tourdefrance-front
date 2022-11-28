@@ -13,6 +13,7 @@ import { setupAddRider } from "./pages/addRider/addRider.js"
 import { setupFindEditRider } from "./pages/findEditRider/findEditRider.js"
 import { initResults } from "./pages/results/results.js"
 import { initLogin, logout } from "./pages/login/login.js"
+import { initAddEditStageResults } from "./pages/addEditStageResults/addEditStageResults.js"
 
 window.addEventListener("load", async () => {
   const templateHome = await loadHtml("./pages/home/home.html")
@@ -21,6 +22,7 @@ window.addEventListener("load", async () => {
   const templateFindEditRider = await loadHtml("./pages/findEditRider/findEditRider.html")
   const templateResults = await loadHtml("./pages/results/results.html")
   const templateLogin = await loadHtml("./pages/login/login.html")
+  const templateStageResults = await loadHtml("./pages/addEditStageResults/addEditStageResults.html")
 
   const token = localStorage.getItem("token")
   toogleLoginStatus(token) //If token existed, for example after a refresh, set UI accordingly
@@ -50,6 +52,10 @@ window.addEventListener("load", async () => {
       "/find-edit-rider": (match) => {
         renderTemplate(templateFindEditRider, "content")
         setupFindEditRider(match)
+      },
+      "/stage-results": () => {
+        renderTemplate(templateStageResults, "content")
+        initAddEditStageResults()
       },
       "/results": () => {
         renderTemplate(templateResults, "content")
